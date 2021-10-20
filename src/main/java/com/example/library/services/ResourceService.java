@@ -21,7 +21,7 @@ public class ResourceService implements IResourceService {
     ResourceMapper mapper;
 
     @Override
-    public List<ResourceDTO> List() {
+    public List<ResourceDTO> list() {
         return mapper.toResourcesDTO(repository.findAll());
     }
 
@@ -33,12 +33,16 @@ public class ResourceService implements IResourceService {
 
     @Override
     public boolean delete(String id) {
-        return false;
+        return getById(id).map(resourceDTO -> {
+            repository.deleteById(id);
+            return true;
+        }).orElse(false);
     }
 
     @Override
     public Optional<ResourceDTO> getById(String id) {
-        return Optional.empty();
+        return repository.findById(id)
+                .map(resource -> mapper.toResourceDTO(resource));
     }
 
     @Override

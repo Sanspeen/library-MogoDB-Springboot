@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IResourceService {
-    List<ResourceDTO> List();
+    List<ResourceDTO> list();
     ResourceDTO create(ResourceDTO resourceDTO);
     boolean delete(String id);
     Optional<ResourceDTO> getById(String id);
