@@ -20,7 +20,7 @@ public class ResourceService implements IResourceService {
     private ResourceRepository repository;
 
     @Autowired
-    ResourceMapper mapper;
+    private ResourceMapper mapper;
 
     @Override
     public List<ResourceDTO> list() {
