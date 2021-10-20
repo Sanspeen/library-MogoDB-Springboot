@@ -33,4 +33,17 @@ public class ResourceController {
     public ResponseEntity<ResourceDTO> createResource(@RequestBody ResourceDTO resourceDTO){
         return new ResponseEntity<>(service.create(resourceDTO), HttpStatus.CREATED);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Object> deleteResource(@PathVariable String id){
+        if(service.delete(id)){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping(value = "/update")
+    public ResponseEntity<ResourceDTO> updateResource(@RequestBody ResourceDTO resourceDTO){
+        return new ResponseEntity<>(service.update(resourceDTO), HttpStatus.OK);
+    }
 }
